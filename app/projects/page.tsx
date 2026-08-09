@@ -29,7 +29,11 @@ export default function ProjectsPage() {
                 32px gap are the reference's. Its columns deliberately do not
                 fill the row — the arrow stops short of the right edge. */}
             <a
-              href="#"
+              href={project.href ?? "#"}
+              // Rows with a live URL open in a new tab — the ↗ already promises
+              // that. Placeholder rows keep the reference's inert link.
+              target={project.href ? "_blank" : undefined}
+              rel={project.href ? "noreferrer" : undefined}
               className="group grid grid-cols-1 gap-3 px-6 py-6 transition-colors hover:bg-card sm:grid-cols-[163px_minmax(0,275px)_24px] sm:items-center sm:gap-8 sm:px-11"
             >
               <h2 className="text-[20.8px] leading-[1.65] tracking-[-0.045em]">

@@ -59,31 +59,14 @@ export type Project = {
   status: "IN DEVELOPMENT" | "SHIPPED" | "ARCHIVED";
 };
 
+/**
+ * Array order is slot order in the fan — left, centre, right — so the featured
+ * build sits at index 1, not index 0. PROJECT 01 is therefore the middle entry.
+ * Everything here but LGU Portal is still placeholder copy from the reference.
+ */
 export const projects: Project[] = [
   {
     index: "PROJECT 03",
-    year: "2024",
-    kind: "CLI",
-    initials: "FR",
-    name: "Ferrous",
-    summary:
-      "Log tailer with structured query filters and a scrollback that survives restarts.",
-    tags: ["Go", "Terminal"],
-    status: "SHIPPED",
-  },
-  {
-    index: "PROJECT 01",
-    year: "2026",
-    kind: "DEVTOOL",
-    initials: "HL",
-    name: "Halcyon",
-    summary:
-      "Local-first API client with request diffing, typed mocks, and shareable collections.",
-    tags: ["Developer Tools", "Desktop"],
-    status: "IN DEVELOPMENT",
-  },
-  {
-    index: "PROJECT 02",
     year: "2025",
     kind: "REALTIME",
     initials: "TP",
@@ -92,6 +75,28 @@ export const projects: Project[] = [
       "Collaborative canvas with CRDT sync, presence, and offline replay on reconnect.",
     tags: ["Realtime", "Web App"],
     status: "SHIPPED",
+  },
+  {
+    index: "PROJECT 01",
+    year: "2026",
+    kind: "GOVTECH",
+    initials: "LM",
+    name: "LGU Manito Portal",
+    summary:
+      "Public hiring portal for a municipal government — departmental vacancies, applicant accounts, and status tracking.",
+    tags: ["Next.js", "Supabase"],
+    status: "SHIPPED",
+  },
+  {
+    index: "PROJECT 02",
+    year: "2026",
+    kind: "DEVTOOL",
+    initials: "HL",
+    name: "Halcyon",
+    summary:
+      "Local-first API client with request diffing, typed mocks, and shareable collections.",
+    tags: ["Developer Tools", "Desktop"],
+    status: "IN DEVELOPMENT",
   },
 ];
 
@@ -251,9 +256,18 @@ export type ArchivedProject = {
   name: string;
   kind: string;
   summary: string;
+  /** Live URL. Rows without one keep the reference's inert `#` link. */
+  href?: string;
 };
 
 export const projectArchive: ArchivedProject[] = [
+  {
+    name: "LGU Manito Portal",
+    kind: "Govtech",
+    summary:
+      "Official job portal for the Municipality of Manito, Albay. Applicants browse departmental vacancies, apply with their requirements, and track each application from a dashboard, with a scoped assistant answering questions about openings.",
+    href: "https://lgumanitoportal.vercel.app",
+  },
   {
     name: "Halcyon",
     kind: "Devtool",
@@ -265,35 +279,5 @@ export const projectArchive: ArchivedProject[] = [
     kind: "Realtime",
     summary:
       "Collaborative canvas with CRDT sync, presence, and offline replay on reconnect.",
-  },
-  {
-    name: "Ferrous",
-    kind: "CLI",
-    summary:
-      "Log tailer with structured query filters and a scrollback that survives restarts.",
-  },
-  {
-    name: "Quarry",
-    kind: "Data",
-    summary:
-      "Incremental static-analysis index that answers cross-repo queries in under a second.",
-  },
-  {
-    name: "Lattice",
-    kind: "Design system",
-    summary:
-      "Component library and token pipeline shared across three product surfaces.",
-  },
-  {
-    name: "Driftwood",
-    kind: "Side project",
-    summary:
-      "Tide and swell dashboard that turns buoy telemetry into a readable week ahead.",
-  },
-  {
-    name: "Postmark",
-    kind: "Infrastructure",
-    summary:
-      "Webhook relay with replay, dead-letter queues, and per-tenant rate limits.",
   },
 ];
