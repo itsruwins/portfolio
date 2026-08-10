@@ -62,7 +62,8 @@ export type Project = {
 /**
  * Array order is slot order in the fan — left, centre, right — so the featured
  * build sits at index 1, not index 0. PROJECT 01 is therefore the middle entry.
- * Everything here but LGU Portal is still placeholder copy from the reference.
+ * LGU Portal and Achimura are real; Tidepool is still placeholder copy from the
+ * reference.
  */
 export const projects: Project[] = [
   {
@@ -85,17 +86,17 @@ export const projects: Project[] = [
     summary:
       "Public hiring portal for a municipal government — departmental vacancies, applicant accounts, and status tracking.",
     tags: ["Next.js", "Supabase"],
-    status: "SHIPPED",
+    status: "IN DEVELOPMENT",
   },
   {
     index: "PROJECT 02",
     year: "2026",
-    kind: "DEVTOOL",
-    initials: "HL",
-    name: "Halcyon",
+    kind: "EDTECH",
+    initials: "AC",
+    name: "Achimura",
     summary:
-      "Local-first API client with request diffing, typed mocks, and shareable collections.",
-    tags: ["Developer Tools", "Desktop"],
+      "Turns notes and lecture files into flashcards, then schedules each card's review by recall.",
+    tags: ["Next.js", "AI"],
     status: "IN DEVELOPMENT",
   },
 ];
@@ -265,14 +266,15 @@ export const projectArchive: ArchivedProject[] = [
     name: "LGU Manito Portal",
     kind: "Govtech",
     summary:
-      "Official job portal for the Municipality of Manito, Albay. Applicants browse departmental vacancies, apply with their requirements, and track each application from a dashboard, with a scoped assistant answering questions about openings.",
+      "Official job portal for the Municipality of Manito, Albay. Applicants browse vacancies, apply, and track each application from one dashboard.",
     href: "https://lgumanitoportal.vercel.app",
   },
   {
-    name: "Halcyon",
-    kind: "Devtool",
+    name: "Achimura",
+    kind: "Edtech",
     summary:
-      "Local-first API client with request diffing, typed mocks, and shareable collections.",
+      "Study app that generates flashcards from notes, PDFs, and slide decks, then spaces each review by how well you recall the card.",
+    href: "https://achimura.vercel.app",
   },
   {
     name: "Tidepool",
