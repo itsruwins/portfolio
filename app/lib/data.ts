@@ -62,7 +62,7 @@ export type Project = {
 /**
  * Array order is slot order in the fan — left, centre, right — so the featured
  * build sits at index 1, not index 0. PROJECT 01 is therefore the middle entry.
- * LGU Portal and Achimura are real; Tidepool is still placeholder copy from the
+ * LGU Portal and Achi are real; Tidepool is still placeholder copy from the
  * reference.
  */
 export const projects: Project[] = [
@@ -93,7 +93,7 @@ export const projects: Project[] = [
     year: "2026",
     kind: "EDTECH",
     initials: "AC",
-    name: "Achimura",
+    name: "Achi",
     summary:
       "Turns notes and lecture files into flashcards, then schedules each card's review by recall.",
     tags: ["Next.js", "AI"],
@@ -270,7 +270,7 @@ export const projectArchive: ArchivedProject[] = [
     href: "https://lgumanitoportal.vercel.app",
   },
   {
-    name: "Achimura",
+    name: "Achi",
     kind: "Edtech",
     summary:
       "Study app that generates flashcards from notes, PDFs, and slide decks, then spaces each review by how well you recall the card.",
