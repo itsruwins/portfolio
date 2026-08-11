@@ -74,7 +74,7 @@ export const projects: Project[] = [
     summary:
       "Logs forex trades and breaks performance down by setup and session, so the edge that actually pays is obvious.",
     tags: ["Next.js", "Analytics"],
-    status: "SHIPPED",
+    status: "IN DEVELOPMENT",
   },
   {
     index: "PROJECT 01",
