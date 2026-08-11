@@ -62,19 +62,18 @@ export type Project = {
 /**
  * Array order is slot order in the fan — left, centre, right — so the featured
  * build sits at index 1, not index 0. PROJECT 01 is therefore the middle entry.
- * LGU Portal and Achi are real; Tidepool is still placeholder copy from the
- * reference.
+ * All three are real builds.
  */
 export const projects: Project[] = [
   {
     index: "PROJECT 03",
-    year: "2025",
-    kind: "REALTIME",
-    initials: "TP",
-    name: "Tidepool",
+    year: "2026",
+    kind: "FINTECH",
+    initials: "TJ",
+    name: "Trading Journal",
     summary:
-      "Collaborative canvas with CRDT sync, presence, and offline replay on reconnect.",
-    tags: ["Realtime", "Web App"],
+      "Logs forex trades and breaks performance down by setup and session, so the edge that actually pays is obvious.",
+    tags: ["Next.js", "Analytics"],
     status: "SHIPPED",
   },
   {
@@ -277,9 +276,10 @@ export const projectArchive: ArchivedProject[] = [
     href: "https://achimura.vercel.app",
   },
   {
-    name: "Tidepool",
-    kind: "Realtime",
+    name: "Trading Journal",
+    kind: "Fintech",
     summary:
-      "Collaborative canvas with CRDT sync, presence, and offline replay on reconnect.",
+      "Journal for forex and prop-firm traders. Logs each trade with its setup, session, and risk, then reports equity curves, profit factor, and per-setup win rates across multiple accounts.",
+    href: "https://tradingjournalv1.vercel.app",
   },
 ];
