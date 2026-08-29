@@ -282,4 +282,11 @@ export const projectArchive: ArchivedProject[] = [
       "Journal for forex and prop-firm traders. Logs each trade with its setup, session, and risk, then reports equity curves, profit factor, and per-setup win rates across multiple accounts.",
     href: "https://tradingjournalv1.vercel.app",
   },
+  {
+    name: "Jeyd",
+    kind: "Ecommerce",
+    summary:
+      "Storefront for a Mobile Legends account reseller. Every listing is documented end to end — rank, collection level, skins, and heroes — so buyers can price an account before they message, then complete a supervised handover.",
+    href: "https://jeydmlbbshop.vercel.app",
+  },
 ];
