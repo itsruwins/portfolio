@@ -68,12 +68,12 @@ export const projects: Project[] = [
   {
     index: "PROJECT 03",
     year: "2026",
-    kind: "FINTECH",
-    initials: "TJ",
-    name: "Trading Journal",
+    kind: "ECOMMERCE",
+    initials: "JD",
+    name: "Jeyd",
     summary:
-      "Logs forex trades and breaks performance down by setup and session, so the edge that actually pays is obvious.",
-    tags: ["Next.js", "Analytics"],
+      "Storefront for a Mobile Legends account reseller \u2014 every listing documented down to rank, skins, and heroes before a supervised handover.",
+    tags: ["Next.js", "Commerce"],
     status: "IN DEVELOPMENT",
   },
   {
@@ -274,13 +274,6 @@ export const projectArchive: ArchivedProject[] = [
     summary:
       "Study app that generates flashcards from notes, PDFs, and slide decks, then spaces each review by how well you recall the card.",
     href: "https://achimura.vercel.app",
-  },
-  {
-    name: "Trading Journal",
-    kind: "Fintech",
-    summary:
-      "Journal for forex and prop-firm traders. Logs each trade with its setup, session, and risk, then reports equity curves, profit factor, and per-setup win rates across multiple accounts.",
-    href: "https://tradingjournalv1.vercel.app",
   },
   {
     name: "Jeyd",
