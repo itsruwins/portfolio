@@ -211,7 +211,7 @@ export const stackGroups: StackGroup[] = [
     label: "AI & machine learning",
     items: ["OpenAI", "Anthropic", "LlamaIndex", "Claude Code", "Codex"],
   },
-  { label: "Mobile", items: ["React Native", "Expo"] },
+  { label: "Mobile", items: ["React Native", "Expo", "NativeWind"] },
   { label: "Cloud & tooling", items: ["Docker", "Vercel", "GitHub Actions"] },
 ];
 

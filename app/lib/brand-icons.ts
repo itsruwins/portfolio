@@ -56,3 +56,32 @@ export const brandPaths: Record<string, string> = {
  * counters fill in solid.
  */
 export const evenOddMarks = new Set(["Codex", "LlamaIndex"]);
+
+/**
+ * Marks drawn as strokes rather than filled shapes, and not on the 24x24 grid
+ * the rest of the set shares. Kept apart from `brandPaths` so that map stays
+ * one flat "label → filled 24x24 path" lookup.
+ *
+ * `width` is the source stroke weight; NativeWind's own is 6 on a 100-unit
+ * grid, which at a 12px chip renders under a pixel, so it is opened up a
+ * little to hold its own beside the filled marks.
+ */
+export type OutlineMark = {
+  viewBox: string;
+  width: number;
+  paths: string[];
+};
+
+export const outlineMarks: Record<string, OutlineMark> = {
+  // NativeWind's own mark — three gusts. It is Tailwind for React Native, but
+  // it does not use Tailwind's logo, so neither do we.
+  "NativeWind": {
+    viewBox: "0 0 100 100",
+    width: 7.5,
+    paths: [
+      "M17.5 54.5C46.5 44 66.8763 53.6331 74.5 53.0333C82.1237 52.4335 86.7205 48.0515 87 41.5333C87.2484 35.7396 82.2987 31.0909 76.5 31.0333C71.2246 30.981 67.0472 34.3626 66 39.5333",
+      "M14 66C22.7738 59.8129 42.5 58.5325 52 63.5335C61.5 68.5346 58.7332 78.407 52.5 80C47.6251 81.2458 42.4238 77.5472 42 72.5335",
+      "M22 43.5C43 38.5 45.0529 39.1187 55.2152 34.7219C65.3775 30.3251 62.5031 19.1172 55.2152 18.0713C50.4176 17.3827 45.9385 21.3139 45.8011 26.1587"
+    ],
+  },
+};

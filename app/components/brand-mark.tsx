@@ -1,4 +1,4 @@
-import { brandPaths, evenOddMarks } from "../lib/brand-icons";
+import { brandPaths, evenOddMarks, outlineMarks } from "../lib/brand-icons";
 
 /**
  * Chip mark: the tool's real logo where one exists, otherwise the neutral ⊙.
@@ -12,6 +12,28 @@ import { brandPaths, evenOddMarks } from "../lib/brand-icons";
  * 13px on the home page's slightly larger ones.
  */
 export function BrandMark({ label, size = 12 }: { label: string; size?: number }) {
+  const outline = outlineMarks[label];
+
+  if (outline) {
+    return (
+      <svg
+        width={size}
+        height={size}
+        viewBox={outline.viewBox}
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={outline.width}
+        strokeLinecap="round"
+        aria-hidden
+        className="shrink-0"
+      >
+        {outline.paths.map((d) => (
+          <path key={d} d={d} />
+        ))}
+      </svg>
+    );
+  }
+
   const path = brandPaths[label];
 
   if (path) {
