@@ -73,7 +73,7 @@ export default async function Image() {
             }}
           >
             Full-stack developer building modern web apps with a focus on
-            UI/UX, and integrating AI into the products I build.
+            UI/UX and AI integration.
           </div>
           <div
             style={{
@@ -85,16 +85,19 @@ export default async function Image() {
               color: "#6f6f6f",
             }}
           >
-            {/* The site's own ⊙ chip glyph, standing in for a favicon. */}
-            <svg width="22" height="22" viewBox="0 0 12 12" fill="none">
-              <circle
-                cx="6"
-                cy="6"
-                r="4.6"
-                stroke="#6f6f6f"
-                strokeWidth="1.1"
-              />
-              <circle cx="6" cy="6" r="1.35" fill="#6f6f6f" />
+            {/* Globe: the plainest "this is a website" mark, and it keeps the
+                domain line from being mistaken for another stack chip. */}
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#6f6f6f"
+              strokeWidth="1.5"
+            >
+              <circle cx="12" cy="12" r="9.25" />
+              <ellipse cx="12" cy="12" rx="4.1" ry="9.25" />
+              <path d="M2.75 12h18.5" />
             </svg>
             {siteUrl.replace("https://", "")}
           </div>

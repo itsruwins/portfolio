@@ -18,7 +18,7 @@ const geistMono = Geist_Mono({
 
 const title = `${profile.name} — Portfolio`;
 const description =
-  "Full stack developer. Selected work, experience, and things currently under construction.";
+  "Full-stack developer building modern web apps with a focus on UI/UX and AI integration.";
 
 export const metadata: Metadata = {
   // Absolute origin, so the relative OG image resolves to a real URL. Crawlers
