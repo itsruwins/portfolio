@@ -29,9 +29,9 @@ export const experience: Role[] = [
 ];
 
 export const education = {
-  years: "2019 — 2023",
-  degree: "Bachelor of Science in Computer Science",
-  school: "Westmark Institute of Technology",
+  years: "2023 — Present",
+  degree: "Bachelor of Science in Information Technology",
+  school: "Computer Arts and Technological College, Inc.",
 };
 
 export const stack = [
