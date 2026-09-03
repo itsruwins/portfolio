@@ -5,6 +5,9 @@
  * second certification are still placeholders from the reference layout.
  */
 
+/** Canonical origin. Drives metadataBase and the link-preview card. */
+export const siteUrl = "https://ruwinsjumaoas.vercel.app";
+
 export const profile = {
   name: "Roince Jumao-as",
   greeting: "Hi, I'm Roince Jumao\u2011as", // non-breaking hyphen

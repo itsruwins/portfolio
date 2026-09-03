@@ -3,7 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 
 import { CornerControls } from "./components/corner-controls";
 import { DotField } from "./components/dot-field";
-import { profile } from "./lib/data";
+import { profile, siteUrl } from "./lib/data";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -16,10 +16,32 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const title = `${profile.name} — Portfolio`;
+const description =
+  "Full stack developer. Selected work, experience, and things currently under construction.";
+
 export const metadata: Metadata = {
-  title: `${profile.name} — Portfolio`,
-  description:
-    "Full stack developer. Selected work, experience, and things currently under construction.",
+  // Absolute origin, so the relative OG image resolves to a real URL. Crawlers
+  // and chat clients fetch it out of band and cannot use a relative path.
+  metadataBase: new URL(siteUrl),
+  title,
+  description,
+  alternates: { canonical: "/" },
+  // The unfurl: siteName is the small line above the title in Discord and
+  // Slack, and the image comes from app/opengraph-image.tsx.
+  openGraph: {
+    type: "website",
+    url: siteUrl,
+    siteName: profile.name,
+    title,
+    description,
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+  },
 };
 
 /**
