@@ -1,7 +1,8 @@
 /**
- * Mock content for the portfolio homepage.
+ * Content for the portfolio homepage.
  *
- * Real: name, email, GitHub handle. Everything else is invented.
+ * Real: profile, experience, education, projects. The stack lists and the
+ * second certification are still placeholders from the reference layout.
  */
 
 export const profile = {
@@ -22,10 +23,9 @@ export type Role = {
   company: string;
 };
 
+/** Condensed view of `workHistory` below — the full periods live there. */
 export const experience: Role[] = [
-  { year: "2026", title: "Senior Frontend Engineer", company: "Meridian Labs" },
-  { year: "2025", title: "Full Stack Developer", company: "Northbay Systems" },
-  { year: "2024", title: "Software Engineer", company: "Cordelia Interactive" },
+  { year: "2025", title: "Lead Developer", company: "Municipality of Manito" },
 ];
 
 export const education = {
@@ -128,7 +128,8 @@ export const certifications: Certification[] = [
 ];
 
 /* ------------------------------------------------------------------ *
- * Sub-page content. Mock, like the rest of this file.
+ * Sub-page content. Mixed — `workHistory` and `projectArchive` are real;
+ * the rest is still carried over from the reference layout.
  * ------------------------------------------------------------------ */
 
 export type Position = {
@@ -142,72 +143,30 @@ export type Position = {
 
 export type Company = {
   name: string;
-  /** Shown under the company name; not a working link on mock data. */
+  /** Shown under the company name; rendered as text, not a link. */
   site: string;
-  /** Monogram for the logo tile — these companies have no real marks. */
+  /** Monogram for the logo tile — stands in for a real mark. */
   initials: string;
   roles: Position[];
 };
 
+/**
+ * Real engagement. The portal itself is PROJECT 01 in `projects` — the two
+ * share the LM monogram so they read as the same body of work.
+ */
 export const workHistory: Company[] = [
   {
-    name: "Meridian Labs",
-    site: "meridianlabs.example",
-    initials: "ML",
+    name: "Municipality of Manito",
+    site: "Manito, Albay · Local Government Unit",
+    initials: "LM",
     roles: [
       {
-        title: "Senior Frontend Engineer",
-        period: "February 2026 — Present",
-        meta: "Full-time · Remote",
+        title: "Lead Developer",
+        period: "2025 — Present",
+        meta: "Capstone engagement · Remote",
         summary:
-          "Lead the design-system rewrite and the migration to the App Router — partnering with design to ship accessible components, cut bundle weight, and keep interaction latency inside budget.",
-        tags: ["TypeScript", "Next.js", "Design systems"],
-      },
-      {
-        title: "Frontend Engineer",
-        period: "March 2025 — February 2026",
-        meta: "Full-time · Remote",
-        summary:
-          "Built the customer-facing dashboard and the charting layer behind it, and set up the visual-regression suite the team still gates releases on.",
-        tags: ["React", "Testing", "Data visualisation"],
-      },
-    ],
-  },
-  {
-    name: "Northbay Systems",
-    site: "northbaysystems.example",
-    initials: "NB",
-    roles: [
-      {
-        title: "Full Stack Developer",
-        period: "January 2025 — March 2025",
-        meta: "Contract · Hybrid",
-        summary:
-          "Shipped the billing integration end to end — schema, webhooks, retries, and the reconciliation job that made the finance team's month-end close survivable.",
-        tags: ["Go", "PostgreSQL", "Stripe"],
-      },
-    ],
-  },
-  {
-    name: "Cordelia Interactive",
-    site: "cordelia.example",
-    initials: "CI",
-    roles: [
-      {
-        title: "Software Engineer",
-        period: "June 2024 — December 2024",
-        meta: "Full-time · On-site",
-        summary:
-          "Maintained the realtime multiplayer layer, chased down desync bugs across three clients, and brought p99 message latency under 80ms.",
-        tags: ["Node.js", "WebSockets", "Redis"],
-      },
-      {
-        title: "Junior Developer",
-        period: "August 2023 — June 2024",
-        meta: "Full-time · On-site",
-        summary:
-          "Built internal tools for the content team and took over the release pipeline, trimming a manual deploy from forty minutes to four.",
-        tags: ["Docker", "CI/CD", "Internal tools"],
+          "Leading a team of three on the municipality's official job portal, built under a memorandum of agreement with the LGU — departmental vacancies, applicant accounts, and end-to-end application tracking from one dashboard.",
+        tags: ["Next.js", "Supabase", "GovTech"],
       },
     ],
   },
