@@ -49,6 +49,33 @@ const HOVER_TILT = 8; // degrees at the card's edge — pushed past the
 const HOVER_MS = 140; // tilt follows the pointer quickly, unlike the switch
 
 /**
+ * Room left under the fan for the cards' drop shadow.
+ *
+ * The phone layout clips the container so the side cards can run off the
+ * screen edges, and a bounding rect stops at the border box — it knows nothing
+ * about the shadow. Hugging the lowest card therefore put the clip line
+ * exactly where `0 18px 40px -24px` starts, slicing it into a hard edge.
+ *
+ * A blur of b reaches b/2 past the shadow's own edge, so the shadow ends
+ * 18 + 20 − 24 = 14px below the card. Doubled here, because the side cards are
+ * rotated and their shadow turns with them, dropping the low corner further.
+ */
+const SHADOW_BLEED = 28;
+
+/**
+ * How far the side cards recede.
+ *
+ * They used to be drawn at `opacity: 0.55`, which sets the whole element
+ * translucent — so the card behind a side card read straight through it, and
+ * the fan stopped looking like three solid objects. The cards now stay opaque
+ * and a veil in the page colour is laid over their contents instead, giving
+ * the same recession with nothing showing through. The values are what the old
+ * opacities resolved to against the page: 1 − 0.55 and 1 − 0.75.
+ */
+const VEIL_IDLE = 0.45;
+const VEIL_HOVER = 0.25;
+
+/**
  * The three project cards, fanned.
  *
  * Only the side cards are interactive — clicking one trades places with the
@@ -69,7 +96,7 @@ export function ProjectStack({ projects }: { projects: Project[] }) {
   // The cards are absolutely positioned, so they cannot size the container.
   // A fixed height leaves a variable gap underneath — the card is 291px tall
   // at 320px wide but 256px from 390px up — so measure the lowest card and
-  // let the container hug it.
+  // let the container hug it, plus the shadow's reach.
   const fanRef = useRef<HTMLDivElement>(null);
   const [fanHeight, setFanHeight] = useState<number | null>(null);
 
@@ -84,7 +111,7 @@ export function ProjectStack({ projects }: { projects: Project[] }) {
           Math.max(max, child.getBoundingClientRect().bottom - top),
         0,
       );
-      setFanHeight(Math.ceil(lowest));
+      setFanHeight(Math.ceil(lowest) + SHADOW_BLEED);
     };
 
     measure();
@@ -139,7 +166,7 @@ export function ProjectStack({ projects }: { projects: Project[] }) {
       ref={fanRef}
       // The class height is the pre-hydration fallback; once measured, the
       // inline height takes over and removes the dead space beneath the fan.
-      className="relative -mx-6 h-[340px] select-none overflow-hidden [--card-w:78vw] [--slot:15vw] [--tilt:13deg] sm:mx-0 sm:overflow-visible sm:[--card-w:356px] sm:[--slot:170px] sm:[--tilt:15deg]"
+      className="relative -mx-6 h-[368px] select-none overflow-hidden [--card-w:78vw] [--slot:15vw] [--tilt:13deg] sm:mx-0 sm:overflow-visible sm:[--card-w:356px] sm:[--slot:170px] sm:[--tilt:15deg]"
       style={fanHeight ? { height: fanHeight } : undefined}
     >
       {projects.map((project, index) => {
@@ -149,6 +176,7 @@ export function ProjectStack({ projects }: { projects: Project[] }) {
         const isFront = offset === 0;
 
         const lift = hovered === index && !isFront ? 6 : 0;
+        const veil = isFront ? 0 : hovered === index ? VEIL_HOVER : VEIL_IDLE;
 
         // The clicked card and the centre trade places, crossing each other.
         // The third card does not move at all.
@@ -160,9 +188,8 @@ export function ProjectStack({ projects }: { projects: Project[] }) {
             className="absolute left-1/2 top-0"
             style={{
               transform: `translateX(-50%) translateX(calc(${offset} * var(--slot))) translateY(${Math.abs(offset) * LIFT - lift}px) rotate(calc(${offset} * var(--tilt, ${TILT_FALLBACK}deg))) scale(${isFront ? 1 : SIDE_SCALE})`,
-              opacity: isFront ? 1 : hovered === index ? 0.75 : 0.55,
               zIndex: isFront ? 30 : 10 - Math.abs(offset),
-              transition: `transform ${SWITCH_MS}ms ${SWITCH_EASE}, opacity ${SWITCH_MS}ms ${SWITCH_EASE}`,
+              transition: `transform ${SWITCH_MS}ms ${SWITCH_EASE}`,
               // Perspective must sit on the tilt element's *direct* parent.
               // On the outer container it would not reach the inner element,
               // and rotateY would flatten to an invisible horizontal squash.
@@ -203,12 +230,16 @@ export function ProjectStack({ projects }: { projects: Project[] }) {
               // Opaque fill, deliberately: a translucent one let the card
               // behind read straight through the front one as they crossed
               // during a switch. No backdrop-blur either — every slot carries
-              // a transform and an opacity, both of which establish a backdrop
-              // root, so the filter has nothing behind it to sample.
-              className={`relative overflow-hidden rounded-xl border border-line bg-card p-5 text-left shadow-[0_18px_40px_-24px_rgb(0_0_0/0.45)] ${
+              // a transform, which establishes a backdrop root, so the filter
+              // has nothing behind it to sample.
+              // The veil covers the padding box, so it cannot dim the border
+              // the way the old element opacity did. Side cards take the
+              // fainter rule colour instead, which is what --line resolved to
+              // at 0.55 over the page in both themes.
+              className={`relative overflow-hidden rounded-xl border bg-card p-5 text-left shadow-[0_18px_40px_-24px_rgb(0_0_0/0.45)] ${
                 isFront
-                  ? "cursor-default"
-                  : "cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-fg"
+                  ? "cursor-default border-line"
+                  : "cursor-pointer border-rule focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-fg"
               }`}
               style={{
                 width: "var(--card-w)",
@@ -277,6 +308,18 @@ export function ProjectStack({ projects }: { projects: Project[] }) {
                 />
                 {project.status}
               </p>
+
+              {/* The recession veil. Last child and above the content, in the
+                  page colour, so a card behind reads as further away without
+                  the card in front of it turning to glass. */}
+              <span
+                aria-hidden
+                className="pointer-events-none absolute inset-0 z-10 bg-bg"
+                style={{
+                  opacity: veil,
+                  transition: `opacity ${SWITCH_MS}ms ${SWITCH_EASE}`,
+                }}
+              />
             </div>
           </div>
         );

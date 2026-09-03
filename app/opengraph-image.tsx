@@ -105,6 +105,7 @@ export default async function Image() {
         {/* Same treatment as the hero portrait: 182/221, rounded, hairline. */}
         <img
           src={portrait}
+          alt=""
           width={364}
           height={442}
           style={{
