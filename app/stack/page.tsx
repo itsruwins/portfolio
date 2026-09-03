@@ -1,61 +1,13 @@
 import type { Metadata } from "next";
 
 import { PageShell } from "../components/page-shell";
-import { brandPaths } from "../lib/brand-icons";
-import { operations, profile, stackGroups } from "../lib/data";
+import { BrandMark } from "../components/brand-mark";
+import { profile, stackGroups } from "../lib/data";
 
 export const metadata: Metadata = {
   title: `Stack — ${profile.name}`,
   description: "The technical stack, organised by the role each tool plays.",
 };
-
-/**
- * Chip mark: the tool's real logo where one exists, otherwise the neutral ⊙.
- * That is the reference's own pattern — it carries brand marks for the tools
- * that have them and falls back to ⊙ for the rest.
- *
- * Drawn in currentColor rather than brand colours, so the row reads as one
- * material and both themes work without a second set of assets.
- */
-function Mark({ label }: { label: string }) {
-  const path = brandPaths[label];
-
-  if (path) {
-    return (
-      <svg
-        width={12}
-        height={12}
-        viewBox="0 0 24 24"
-        fill="currentColor"
-        aria-hidden
-        className="shrink-0"
-      >
-        <path d={path} />
-      </svg>
-    );
-  }
-
-  return (
-    <svg
-      width={12}
-      height={12}
-      viewBox="0 0 12 12"
-      fill="none"
-      aria-hidden
-      className="shrink-0"
-    >
-      <circle
-        cx="6"
-        cy="6"
-        r="4.6"
-        stroke="currentColor"
-        strokeWidth="1.1"
-        opacity="0.75"
-      />
-      <circle cx="6" cy="6" r="1.35" fill="currentColor" />
-    </svg>
-  );
-}
 
 /**
  * Metrics read off the reference: 28px tall, and padded asymmetrically —
@@ -65,7 +17,7 @@ function Mark({ label }: { label: string }) {
 function Chip({ label }: { label: string }) {
   return (
     <li className="inline-flex h-7 items-center gap-[5.6px] rounded-full border border-line bg-surface pl-[7.2px] pr-[10.4px] text-[11px] font-medium text-muted transition-colors hover:border-line-strong hover:text-fg">
-      <Mark label={label} />
+      <BrandMark label={label} />
       {label}
     </li>
   );
@@ -101,25 +53,6 @@ export default function StackPage() {
           </section>
         ))}
       </div>
-
-      {/* mt-8 + pt-9 lands 97px below the last chip, matching the reference.
-          The previous mt-20/pt-14 left a 165px hole here. */}
-      <section className="mt-8 border-t border-rule pt-9">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.14em]">
-          {operations.eyebrow}
-        </p>
-        <h2 className="mt-4 text-[20px] font-semibold tracking-[-0.03em]">
-          {operations.title}
-        </h2>
-        <p className="mt-4 max-w-[54ch] text-[14.5px] leading-[1.7] text-muted">
-          {operations.summary}
-        </p>
-        <ul className="mt-6 flex flex-wrap gap-2">
-          {operations.items.map((item) => (
-            <Chip key={item} label={item} />
-          ))}
-        </ul>
-      </section>
     </PageShell>
   );
 }

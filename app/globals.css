@@ -89,10 +89,12 @@ body {
   color: var(--muted);
 }
 
-/* Hero copy is justified with real hyphenation, as in the reference. */
+/* Hero copy is justified. Hyphenation is off — the reference hyphenates, but
+   breaking a word across lines ("in-tegrating") reads worse here than the
+   slightly looser word spacing that justifying without it costs. */
 @utility prose-justify {
   text-align: justify;
-  hyphens: auto;
+  hyphens: none;
 }
 
 /* Sections rise into place on mount. Matched to the reference: 12px of

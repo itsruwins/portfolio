@@ -8,6 +8,7 @@ import Image from "next/image";
 // headshot.jpg. Baked into the asset rather than computed in the browser,
 // which is how the reference does it: no canvas, no filter, just an <img>.
 import headshot from "./headshot-halftone.png";
+import { BrandMark } from "./components/brand-mark";
 import { CertificationCard } from "./components/certification-card";
 import { ContributionGraph } from "./components/contribution-graph";
 import { ProjectStack } from "./components/project-stack";
@@ -169,8 +170,11 @@ export default function Home() {
           {stack.map((item) => (
             <li
               key={item}
-              className="rounded-full border border-line px-3 py-1.5 text-[12.5px] text-muted transition-colors hover:border-line-strong hover:text-fg"
+              // Padded asymmetrically, as on the stack page: less room on the
+              // icon side than the text side, so the glyph is not adrift.
+              className="inline-flex items-center gap-[6px] rounded-full border border-line py-1.5 pl-2.5 pr-3 text-[12.5px] text-muted transition-colors hover:border-line-strong hover:text-fg"
             >
+              <BrandMark label={item} size={13} />
               {item}
             </li>
           ))}

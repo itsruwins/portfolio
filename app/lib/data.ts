@@ -12,8 +12,8 @@ export const profile = {
   github: "itsruwins",
   githubUrl: "https://github.com/itsruwins",
   blurb: [
-    "Full Stack Developer & Systems Tinkerer. Building end-to-end products with TypeScript, Go, and whatever the problem actually needs.",
-    "I care about the unglamorous parts — data models, latency budgets, and error states — because that is where products quietly succeed or fail.",
+    "I'm a full-stack developer focused on building modern web applications with a strong focus on UI/UX, and integrating AI into the products I build.",
+    "Right now, I'm building and experimenting with new ideas every day. I enjoy taking rough ideas and turning them into products people actually want to use.",
   ],
 };
 
@@ -38,14 +38,15 @@ export const stack = [
   "TypeScript",
   "React",
   "Next.js",
+  "Tailwind CSS",
   "Node.js",
-  "Go",
+  "Python",
+  "NestJS",
   "PostgreSQL",
-  "Redis",
+  "MongoDB",
   "Docker",
-  "TailwindCSS",
-  "Prisma",
-  "tRPC",
+  "OpenAI",
+  "Anthropic",
 ];
 
 export type Project = {
@@ -176,40 +177,40 @@ export type StackGroup = { label: string; items: string[] };
 
 export const stackGroups: StackGroup[] = [
   {
-    label: "Web",
-    items: ["TypeScript", "React", "Next.js", "TailwindCSS", "Vite", "Zustand"],
-  },
-  {
-    label: "Databases & backend",
+    label: "Frontend",
     items: [
-      "Node.js",
-      "Go",
-      "PostgreSQL",
-      "Redis",
-      "Prisma",
-      "tRPC",
-      "REST",
-      "GraphQL",
+      "JavaScript",
+      "TypeScript",
+      "React",
+      "Next.js",
+      "Tailwind CSS",
+      "Vite",
     ],
   },
-  { label: "Mobile", items: ["React Native", "Expo", "Swift"] },
-  { label: "Cloud & tooling", items: ["Docker", "Vercel", "Fly.io", "GitHub Actions", "Terraform"] },
-  { label: "Testing", items: ["Vitest", "Playwright", "Testing Library"] },
+  {
+    label: "Backend",
+    items: [
+      "Node.js",
+      "Python",
+      "Java",
+      "PHP",
+      "Express.js",
+      "NestJS",
+      "FastAPI",
+      "Laravel",
+      "PostgreSQL",
+      "MySQL",
+      "MongoDB",
+      "OAuth",
+    ],
+  },
+  {
+    label: "AI & machine learning",
+    items: ["OpenAI", "Anthropic", "LlamaIndex", "Claude Code", "Codex"],
+  },
+  { label: "Mobile", items: ["React Native", "Expo"] },
+  { label: "Cloud & tooling", items: ["Docker", "Vercel", "GitHub Actions"] },
 ];
-
-export const operations = {
-  eyebrow: "Beyond development",
-  title: "Operations",
-  summary:
-    "The unglamorous systems I keep running so the engineering work has somewhere to land.",
-  items: [
-    "Release management",
-    "Incident response",
-    "Technical writing",
-    "Onboarding docs",
-    "Mentoring",
-  ],
-};
 
 export type ArchivedProject = {
   name: string;
